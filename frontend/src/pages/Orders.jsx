@@ -3,6 +3,8 @@ import axios from "axios";
 import Title from "../components/Title";
 import { Package, Truck, CalendarDays } from "lucide-react";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ const Orders = () => {
       }
 
       const response = await axios.get(
-        "http://localhost:4000/api/order",
+        `${BACKEND_URL}/api/order`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -179,7 +181,8 @@ const Orders = () => {
                           </h3>
 
                           <p className="mt-1 text-base font-semibold text-gray-900">
-                            ${item.price.toLocaleString(undefined, {
+                            $
+                            {item.price.toLocaleString(undefined, {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
                             })}
@@ -226,7 +229,8 @@ const Orders = () => {
                     </p>
 
                     <p className="mt-1 text-lg font-semibold text-gray-950">
-                      ${order.amount.toLocaleString(undefined, {
+                      $
+                      {order.amount.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}

@@ -11,6 +11,8 @@ import {
   UserRound,
 } from "lucide-react";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Login = () => {
   const [currentState, setCurrentState] = useState("Sign Up");
 
@@ -24,7 +26,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-const from = location.state?.from || "/";
+  const from = location.state?.from || "/";
 
   const isLogin = currentState === "Login";
 
@@ -60,7 +62,7 @@ const from = location.state?.from || "/";
           };
 
       const response = await axios.post(
-        `http://localhost:4000/api/user/${endpoint}`,
+        `${BACKEND_URL}/api/user/${endpoint}`,
         payload
       );
 
@@ -94,7 +96,7 @@ const from = location.state?.from || "/";
           : "Account created successfully"
       );
 
-     navigate(from, { replace: true });
+      navigate(from, { replace: true });
     } catch (error) {
       console.error(
         "Authentication error:",

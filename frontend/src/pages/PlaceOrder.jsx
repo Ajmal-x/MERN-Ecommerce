@@ -12,6 +12,8 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
   const [loading, setLoading] = useState(false);
@@ -96,7 +98,7 @@ const PlaceOrder = () => {
       const amount = getCartAmount() + delivery_fee;
 
       const response = await axios.post(
-        "http://localhost:4000/api/order",
+        `${BACKEND_URL}/api/order`,
         {
           items: orderItems,
           amount,

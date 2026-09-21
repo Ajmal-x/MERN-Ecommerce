@@ -6,30 +6,20 @@ import axios from "axios";
 
 export const ShopContext = createContext();
 
-const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ShopContextProvider = ({ children }) => {
-  // =========================
-  // Products
-  // =========================
-
-  // Products from both assets.js and MongoDB
+  
   const [products, setProducts] = useState(localProducts);
 
-  // Products coming only from MongoDB
+
   const [databaseProducts, setDatabaseProducts] = useState([]);
 
-  // =========================
-  // Search
-  // =========================
-
+  
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
-  // =========================
-  // Cart
-  // =========================
-
+  
   const [cartItems, setCartItems] = useState({});
   const [cartLoaded, setCartLoaded] = useState(false);
 
@@ -38,10 +28,7 @@ const ShopContextProvider = ({ children }) => {
   const currency = "$";
   const delivery_fee = 10;
 
-  // =========================
-  // Load Products
-  // =========================
-
+  
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -52,10 +39,10 @@ const ShopContextProvider = ({ children }) => {
         if (response.data.success) {
           const backendProducts = response.data.products || [];
 
-          // Save backend products separately
+ 
           setDatabaseProducts(backendProducts);
 
-          // Combine assets.js products + MongoDB products
+
           setProducts([
             ...localProducts,
             ...backendProducts,
@@ -65,11 +52,9 @@ const ShopContextProvider = ({ children }) => {
             "Failed to load products:",
             response.data.message
           );
-
-          // Backend failed
           setDatabaseProducts([]);
 
-          // Keep assets.js products
+         
           setProducts(localProducts);
         }
       } catch (error) {
@@ -78,20 +63,16 @@ const ShopContextProvider = ({ children }) => {
           error.response?.data || error.message
         );
 
-        // Backend unavailable
+       
         setDatabaseProducts([]);
 
-        // Keep assets.js products
+       
         setProducts(localProducts);
       }
     };
 
     loadProducts();
   }, []);
-
-  // =========================
-  // Load Cart
-  // =========================
 
   useEffect(() => {
     const loadCart = async () => {
