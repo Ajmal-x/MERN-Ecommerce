@@ -1,148 +1,349 @@
-# 🛒 MERN E-Commerce Website
+# 🛍️ Trendify — MERN E-Commerce Platform
 
-Welcome to the **MERN E-Commerce Website**! This project is a feature-rich e-commerce application built using the powerful MERN stack, complete with an intuitive user-facing store and an all-encompassing admin dashboard.
+Trendify is a full-stack e-commerce platform built with the MERN stack.
+
+The project includes a modern customer storefront, a dedicated admin dashboard, secure authentication, product management, shopping cart functionality, order management, and MongoDB-based data storage.
+
+---
 
 ## ✨ Features
 
-### 🌟 User Frontend:
+### 🛒 Customer Store
 
-- **🔒 Secure Authentication**: Register, login, and manage user profiles effortlessly.
-- **🛍️ Product Exploration**: Browse and search through an extensive product catalog with advanced filtering options.
-- **🛒 Shopping Cart**: Add products to your cart, modify quantities, and proceed to a hassle-free checkout.
-- **💳 Seamless Payments**: Make secure payments using Stripe integration.
-- **📦 Order Management**: View order history, track deliveries, and manage returns with ease.
+- User registration and login
+- Secure JWT authentication
+- User profile management
+- Product browsing
+- Product search
+- Category filtering
+- Subcategory filtering
+- Product sorting
+- Product details
+- Shopping cart
+- Quantity management
+- Order placement
+- Order history
+- Responsive design
 
-### ⚙️ Admin Dashboard:
+### ⚙️ Admin Dashboard
 
-- **🛠️ Product Management**: Add, update, or delete products with a user-friendly interface.
-- **📂 Category Management**: Organize products into categories for better navigation.
-- **📑 Order Management**: View, process, and update orders efficiently.
-- **👥 User Management**: Manage user roles and access levels.
+- Secure admin login
+- Protected admin routes
+- Dashboard
+- Product management
+- Add products
+- Edit products
+- Delete products
+- Order management
+- Admin profile management
+- Admin email management
+- Admin password management
+- Role-based access control
 
-## 🛠️ Tech Stack
+---
 
-- **MongoDB**: Robust NoSQL database for storing all application data.
-- **Express.js**: Fast and minimalistic backend framework.
-- **React.js**: Modern frontend library for building dynamic user interfaces.
-- **Node.js**: JavaScript runtime environment for running the backend.
-- **Stripe**: Integrated payment gateway for processing transactions.
-- **JWT**: JSON Web Tokens for secure user sessions.
+## 🧰 Tech Stack
 
-## 🗂️ Folder Structure
+### Frontend
 
-```plaintext
-/
-|-- admin/            # React.js admin frontend code
-|-- backend/          # Node.js backend code (Express.js)
-|-- frontend/         # React.js frontend code
-|-- .gitignore        # Files and folders to be ignored by Git
-|-- README.md         # Project documentation
-```
+- React
+- React Router
+- Tailwind CSS
+- Axios
+- Vite
+- React Toastify
 
-## 🤸 Quick Start
+### Admin Dashboard
 
-Follow these steps to set up the project locally on your machine.
+- React
+- React Router
+- Tailwind CSS
+- Axios
+- Vite
+- React Toastify
+- Lucide React
 
-**Prerequisites**
+### Backend
 
-Make sure you have the following installed on your machine:
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
+- Multer
+- Cloudinary
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [NPM](https://www.npmjs.com/) (Node Package Manager)
+---
 
-**Cloning the Repository**
+## 🗂️ Project Structure
 
-```bash
-git clone https://github.com/MenathNDGD/MERN-Ecommerce.git
-```
+    MERN-Ecommerce/
+    │
+    ├── admin/
+    │   ├── src/
+    │   ├── public/
+    │   ├── package.json
+    │   └── vite.config.js
+    │
+    ├── backend/
+    │   ├── config/
+    │   ├── controllers/
+    │   ├── middleware/
+    │   ├── models/
+    │   ├── routes/
+    │   ├── package.json
+    │   └── server.js
+    │
+    ├── frontend/
+    │   ├── src/
+    │   ├── public/
+    │   ├── package.json
+    │   └── vite.config.js
+    │
+    ├── .gitignore
+    └── README.md
 
-**Installation**
+---
 
-Install the project dependencies using npm:
+## 🗄️ Database
 
-```bash
-npm install
-```
+Trendify uses MongoDB with the following main collections:
 
-**Set Up Environment Variables**
+    mern_ecommerce
+    │
+    ├── users
+    ├── products
+    └── orders
 
-<details>
-<summary><code>/admin/.env</code></summary>
+The `users` collection is shared by normal users and administrators.
 
-```env
-VITE_BACKEND_URL = "http://localhost:4000"
-```
+User roles are managed using the `role` field:
 
-</details>
+    role: "user"
+    role: "admin"
 
-<details>
-<summary><code>/backend/.env</code></summary>
+This allows the application to use the same database and users collection while providing different access levels.
 
-```env
-MONGODB_URI =
+---
 
-CLOUDINARY_API_KEY =
+## 🔐 Authentication
 
-CLOUDINARY_SECRET_KEY =
+The application uses JWT-based authentication.
 
-CLOUDINARY_CLOUD_NAME =
+Passwords are securely hashed using bcrypt before being stored in MongoDB.
 
-JWT_SECRET =
+Admin access is protected using role-based authentication.
 
-ADMIN_EMAIL = "admin@trendify.com" #For testing only
+The backend verifies:
 
-ADMIN_PASSWORD = "admin@123" #For testing only
+1. The JWT token
+2. The user's identity
+3. The user's role
+4. Whether the user has administrator access
 
-```
+---
 
-</details>
+## ☁️ Image Storage
 
-<details>
-<summary><code>/frontend/.env</code></summary>
+Product images are uploaded and managed using Cloudinary.
 
-```env
-VITE_BACKEND_URL = "http://localhost:4000"
-```
+Cloudinary credentials are stored in environment variables and are never included directly in the source code.
 
-</details>
+---
 
-Replace the placeholder values with your actual Appwrite credentials.
+## 🚀 Getting Started
 
-**Running the Project**
+### Prerequisites
 
-**Admin Dashboard Running On:**
+Make sure you have the following installed:
 
-```bash
-cd admin
-```
+- Git
+- Node.js
+- npm
+- MongoDB Atlas account
+- Cloudinary account
 
-```bash
-npm run dev
-```
+---
 
-**Backend Running On:**
+## 📥 Clone the Repository
 
-```bash
-cd backend
-```
+    git clone https://github.com/Ajmal-x/MERN-Ecommerce.git
+    cd MERN-Ecommerce
 
-```bash
-npm run server
-```
+---
 
-**Frontend Running On:**
+## 📦 Install Dependencies
 
-```bash
-cd frontend
-```
+The project contains three separate applications.
 
-```bash
-npm run dev
-```
+### Backend
 
-Open [http://localhost:5174](http://localhost:5174) in your browser to view the admin dashboard.
+    cd backend
+    npm install
 
-Open [http://localhost:400](http://localhost:400) in your browser to run the backend.
+### Frontend
 
-Open [http://localhost:5173](http://localhost:5173) in your browser to view the frontend project.
+    cd ../frontend
+    npm install
+
+### Admin
+
+    cd ../admin
+    npm install
+
+---
+
+## 🔑 Environment Variables
+
+Environment variables are required for the backend, frontend, and admin applications.
+
+### Backend
+
+Create:
+
+    backend/.env
+
+Example:
+
+    PORT=4000
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret
+    CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+    CLOUDINARY_API_KEY=your_cloudinary_api_key
+    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+
+### Frontend
+
+Create:
+
+    frontend/.env
+
+Example:
+
+    VITE_BACKEND_URL=http://localhost:4000
+
+### Admin
+
+Create:
+
+    admin/.env
+
+Example:
+
+    VITE_BACKEND_URL=http://localhost:4000
+
+> Never commit real environment variables, passwords, API keys, JWT secrets, or database credentials to GitHub.
+
+---
+
+## ▶️ Running the Project
+
+The project consists of three applications that should be running at the same time during local development.
+
+### 1. Start the Backend
+
+Open a terminal:
+
+    cd backend
+    npm start
+
+The backend will run on:
+
+    http://localhost:4000
+
+---
+
+### 2. Start the Frontend
+
+Open another terminal:
+
+    cd frontend
+    npm run dev
+
+The Vite development server will display the local frontend URL in the terminal.
+
+Usually:
+
+    http://localhost:5173
+
+---
+
+### 3. Start the Admin Dashboard
+
+Open another terminal:
+
+    cd admin
+    npm run dev
+
+The Vite development server will display the admin dashboard URL in the terminal.
+
+Usually:
+
+    http://localhost:5174
+
+---
+
+## 🔄 Application Architecture
+
+    Frontend
+    Customer Store
+          │
+          │ REST API
+          ▼
+    Backend
+    Node.js + Express
+          │
+          ├──────────────► MongoDB
+          │                ├── users
+          │                ├── products
+          │                └── orders
+          │
+          └──────────────► Cloudinary
+                           Product Images
+
+    Admin Dashboard
+          │
+          │ REST API
+          ▼
+       Backend
+
+---
+
+## 📱 Responsive Design
+
+Trendify is designed to provide a responsive shopping experience across:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+---
+
+## 🔒 Security
+
+Sensitive configuration is kept outside the source code using environment variables.
+
+The project uses:
+
+- JWT authentication
+- bcrypt password hashing
+- Protected API routes
+- Protected admin routes
+- Role-based access control
+- Environment variables for secrets
+
+---
+
+## 👨‍💻 Author
+
+### Ajmal Ahmadi
+
+GitHub: https://github.com/Ajmal-x
+
+---
+
+## 📄 License
+
+This project is currently provided for educational and portfolio purposes.
